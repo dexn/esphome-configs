@@ -1,8 +1,8 @@
 substitutions:
   # Can only contain lowercase a-z, 0-9 and hyphens. Can be at most 24 characters long.
-  name: ""
+  name: "athom-smart-plug-v2"
   # This is the friendly name that can also contain uppercase letters, spaces and other characters.
-  friendly_name: ""
+  friendly_name: "Athom Smart Plug V2"
   # Allows ESP device to be automatically lined to an 'Area' in Home Assistant. Typically used for areas such as 'Lounge Room', 'Kitchen' etc
   room: ""
   # Restore state on bootup - RESTORE_DEFAULT_OFF, RESTORE_DEFAULT_ON, RESTORE_INVERTED_DEFAULT_OFF, RESTORE_INVERTED_DEFAULT_ON, ALWAYS_OFF, ALWAYS_ON, DISABLED
