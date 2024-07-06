@@ -91,7 +91,7 @@ sensor:
               id(total_energy) += current_energy_value - previous_energy_value;
               previous_energy_value = current_energy_value;
               id(total_energy_sensor).update();
-      internal: ${hide_energy_sensor}
+      internal: true
 
     apparent_power:
       name: "Apparent Power"
