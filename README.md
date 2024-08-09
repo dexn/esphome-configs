@@ -2,7 +2,7 @@
 These are just the configurations for the ESPHome devices I have. I've made them so they share a basic configuration to show similar data. I also added a fast_boot factory reset script for devices that are in a hard to reach place, or have a faulty button.
 
 ### Substitutions
-I have included a few substitutions for grouped or most frequently changed settings. If you would like to add or change other settings, I'd suggest using `!extend` or `!remove` [explained below](https://github.com/dexn/esphome-configs/tree/main#extend-and-remove).
+I have included a few substitutions for grouped or most frequently changed settings. If you would like to add or change other settings, I'd suggest using `!extend` or `!remove` [explained below](https://github.com/dexn/esphome-configs#extend-and-remove).
 ##### Name used for mDNS and entities
 Can only contain lowercase a-z, 0-9 and hyphens. Can be at most 24 characters long.
 ```
