@@ -13,8 +13,8 @@ preferences:
 api:
 
 logger:
-  level: INFO
   id: log
+  level: INFO
   
 ota:
   - platform: esphome
