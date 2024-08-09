@@ -1,14 +1,3 @@
-substitutions:
-  name: "athom-presence-sensor"
-  friendly_name: "Athom Presence Sensor"
-
-dashboard_import:
-  package_import_url: github://dexn/esphome-configs/devices/athom-presence-sensor.yaml@main
-
-packages:
-  base_package: github://dexn/esphome-configs/packages/base.yaml@main
-  fast_boot_package: github://dexn/esphome-configs/packages/fast_boot.yaml@main
-
 esphome:
   min_version: 2024.6.0
   comment: "mmWave Radar Human Presence Sensor"
