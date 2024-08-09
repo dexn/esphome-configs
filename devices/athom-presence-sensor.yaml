@@ -16,8 +16,6 @@ esphome:
     name: "Athom Technology.Presence Sensor"
     version: "1.0.1"
 
-logger:
-
 i2c:
   sda: GPIO4
   scl: GPIO5
