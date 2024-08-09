@@ -3,31 +3,15 @@ substitutions:
   name: "athom-smart-plug-v2"
   # This is the friendly name that can also contain uppercase letters, spaces and other characters.
   friendly_name: "Athom Smart Plug V2"
-  # Allows ESP device to be automatically lined to an 'Area' in Home Assistant. Typically used for areas such as 'Lounge Room', 'Kitchen' etc
-  room: ""
   # Restore state on bootup - RESTORE_DEFAULT_OFF, RESTORE_DEFAULT_ON, RESTORE_INVERTED_DEFAULT_OFF, RESTORE_INVERTED_DEFAULT_ON, ALWAYS_OFF, ALWAYS_ON, DISABLED
-  relay_restore_mode: RESTORE_DEFAULT_OFF
+  restore_mode: RESTORE_DEFAULT_OFF
   # How often data is read
-  sensor_update_interval: 10s
+  update_interval: 10s
   # Current Limit in Amps. AU Plug = 10. IL, BR, EU, UK, US Plug = 16.
-  current_limit : "16"
-  # Define a domain for this device to use. i.e. iot.home.lan (so device will appear as name.iot.home.lan in DNS/DHCP logs).
-  dns_domain: ""
-  # Set timezone of the device. Useful if the device is in a location different to the HA server. Can be entered in unix Country/Area format (i.e. "Australia/Sydney").
-  timezone: ""
-  # Enables faster network connections, with last connected SSID being connected to and no full scan for SSID being undertaken
-  wifi_fast_connect: "false" 
-  # Set the duration between the sntp service polling ntp.org servers for an update
-  sntp_update_interval: "6h"
-  # Network time servers for your region, enter from lowest to highest priority. To use local servers update as per zones or countries at: https://www.ntppool.org/zone/@
-  sntp_server_1: "0.pool.ntp.org"
-  sntp_server_2: "1.pool.ntp.org"
-  sntp_server_3: "2.pool.ntp.org"  
-  # Define logging level: NONE, ERROR, WARN, INFO, DEBUG (Default), VERBOSE, VERY_VERBOSE
-  log_level: "INFO"
+  current_limit : "10"
 
 dashboard_import:
-  package_import_url: github://dexn/esphome-configs/devices/athom-smart-plug-v2.yaml@main
+  package_import_url: github://dexn/esphome-configs/devices/athom-smart-plug-v2-au.yaml@main
 
 packages:
   base_package: github://dexn/esphome-configs/packages/base.yaml@main
@@ -91,7 +75,7 @@ sensor:
     current:
       name: "Current"
       filters:
-        - throttle_average: ${sensor_update_interval}
+        - throttle_average: ${update_interval}
         - lambda: if (x < 0.060) return 0.0; else return x;   #For the chip will report less than 3w power when no load is connected
       on_value_range:
         - above: ${current_limit}
@@ -101,13 +85,13 @@ sensor:
     voltage:
       name: "Voltage"
       filters:
-        - throttle_average: ${sensor_update_interval}
+        - throttle_average: ${update_interval}
 
     power:
       name: "Power"
       id: power_sensor
       filters:
-        - throttle_average: ${sensor_update_interval}
+        - throttle_average: ${update_interval}
         - lambda: if (x < 3.0) return 0.0; else return x;    #For the chip will report less than 3w power when no load is connected
 
     energy:
@@ -115,7 +99,7 @@ sensor:
       id: energy
       unit_of_measurement: kWh
       filters:
-        - throttle: ${sensor_update_interval}
+        - throttle: ${update_interval}
         # Multiplication factor from W to kW is 0.001
         - multiply: 0.001
       on_value:
@@ -131,12 +115,12 @@ sensor:
     apparent_power:
       name: "Apparent Power"
       filters:
-        - throttle_average: ${sensor_update_interval}
+        - throttle_average: ${update_interval}
 
     power_factor:
       name: "Power Factor"
       filters:
-        - throttle_average: ${sensor_update_interval}
+        - throttle_average: ${update_interval}
 
   - platform: template
     name: "Total Energy"
@@ -148,7 +132,7 @@ sensor:
     accuracy_decimals: 3
     lambda: |-
       return id(total_energy);
-    update_interval: ${sensor_update_interval}
+    update_interval: ${update_interval}
 
   - platform: total_daily_energy
     name: "Total Energy Today"
@@ -186,4 +170,4 @@ switch:
     name: "Switch"
     pin: GPIO12
     id: relay
-    restore_mode: ${relay_restore_mode}
+    restore_mode: ${restore_mode}
