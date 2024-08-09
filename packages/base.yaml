@@ -12,7 +12,6 @@ preferences:
 
 # Enable logging
 logger:
-  level: INFO
 
 api:
 
