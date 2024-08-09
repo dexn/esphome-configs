@@ -6,7 +6,6 @@ esphome:
     version: "2.0.3"
 
 logger:
-  id: !extend log
   baud_rate: 0
 
 # Dentra Components - Adds 'Platform - Energy Statistics'
