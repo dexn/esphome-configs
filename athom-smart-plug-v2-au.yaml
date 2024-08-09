@@ -1,0 +1,14 @@
+substitutions:
+  name: "athom-smart-plug-v2"
+  friendly_name: "Athom Smart Plug V2"
+  restore_mode: RESTORE_DEFAULT_OFF
+  update_interval: 10s
+
+dashboard_import:
+  package_import_url: github://dexn/esphome-configs/athom-smart-plug-v2-au.yaml@main
+  import_full_config: true
+
+packages:
+  base_package: github://dexn/esphome-configs/packages/base.yaml@main
+  fast_boot_package: github://dexn/esphome-configs/packages/fast_boot.yaml@main
+  device_package: github://dexn/esphome-configs/devices/athom-smart-plug-v2-au.yaml@main
