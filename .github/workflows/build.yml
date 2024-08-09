@@ -19,6 +19,7 @@ jobs:
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
       files: |
+        devices/athom-presence-sensor.yaml
         devices/athom-smart-plug-v2-au.yaml
       esphome-version: 2024.7.3
       release-summary: ${{ github.event_name == 'release' && github.event.release.body || '' }}
