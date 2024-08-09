@@ -25,11 +25,6 @@ esphome:
 logger:
   baud_rate: 0
 
-# Dentra Components - Adds 'Platform - Energy Statistics'
-# https://github.com/dentra/esphome-components/tree/master/components/energy_statistics
-external_components:
-  - source: github://dentra/esphome-components
-
 uart:
   rx_pin: RX
   baud_rate: 4800
@@ -141,27 +136,6 @@ sensor:
     accuracy_decimals: 3
     filters:
       - multiply: 0.001
-     # Dentra Components - Define the id of the sensor providing 'Total Energy' used
-  - platform: "energy_statistics"
-    total: total_energy_sensor
-
-     # Dentra Components - Adds Energy Yesterday
-    energy_yesterday:
-      name: "Total Energy Yesterday"
-      id: total_energy_yesterday
-      accuracy_decimals: 3
-
-     # Dentra Components - Adds Energy Week
-    energy_week:
-      name: "Total Energy Week"
-      id: total_energy_week
-      accuracy_decimals: 3
-
-     # Dentra Components - Adds Energy Month
-    energy_month:
-      name: "Total Energy Month"
-      id: total_energy_month
-      accuracy_decimals: 3
 
 switch:
   - platform: gpio
