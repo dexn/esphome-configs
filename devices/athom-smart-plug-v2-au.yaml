@@ -67,6 +67,7 @@ light:
     pin:
       inverted: true
       number: GPIO13
+    web_server_sorting_weight: 11
 
 sensor:
   - platform: cse7766
@@ -79,11 +80,13 @@ sensor:
         - above: 10
           then:
             - switch.turn_off: relay
+      web_server_sorting_weight: 3
 
     voltage:
       name: "Voltage"
       filters:
         - throttle_average: ${update_interval}
+      web_server_sorting_weight: 2
 
     power:
       name: "Power"
@@ -91,6 +94,7 @@ sensor:
       filters:
         - throttle_average: ${update_interval}
         - lambda: if (x < 3.0) return 0.0; else return x;    #For the chip will report less than 3w power when no load is connected
+      web_server_sorting_weight: 4
 
     energy:
       name: "Energy"
@@ -114,11 +118,13 @@ sensor:
       name: "Apparent Power"
       filters:
         - throttle_average: ${update_interval}
+      web_server_sorting_weight: 5
 
     power_factor:
       name: "Power Factor"
       filters:
         - throttle_average: ${update_interval}
+      web_server_sorting_weight: 6
 
   - platform: template
     name: "Total Energy"
@@ -141,6 +147,7 @@ sensor:
     accuracy_decimals: 3
     filters:
       - multiply: 0.001
+    web_server_sorting_weight: 7
 
   # Dentra Components - Define the id of the sensor providing 'Total Energy' used
   - platform: "energy_statistics"
@@ -151,18 +158,21 @@ sensor:
       name: "Total Energy Yesterday"
       id: total_energy_yesterday
       accuracy_decimals: 3
+      web_server_sorting_weight: 8
 
     # Dentra Components - Adds Energy Week
     energy_week:
       name: "Total Energy Week"
       id: total_energy_week
       accuracy_decimals: 3
+      web_server_sorting_weight: 9
 
     # Dentra Components - Adds Energy Month
     energy_month:
       name: "Total Energy Month"
       id: total_energy_month
       accuracy_decimals: 3
+      web_server_sorting_weight: 10
 
 switch:
   - platform: gpio
@@ -170,3 +180,4 @@ switch:
     pin: GPIO12
     id: relay
     restore_mode: ${restore_mode}
+    web_server_sorting_weight: 1
