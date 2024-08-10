@@ -14,3 +14,4 @@ packages:
   device_package: github://dexn/esphome-configs/devices/athom-smart-plug-v2-au.yaml@main
 
 esphome:
+  name_add_mac_suffix: true
