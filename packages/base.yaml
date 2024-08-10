@@ -56,16 +56,6 @@ sensor:
     update_interval: 60s
     entity_category: diagnostic
 
-  # Reports the WiFi signal strength in %
-  - platform: copy
-    source_id: wifi_signal_db
-    name: "WiFi Strength"
-    id: wifi_strength
-    filters:
-      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
-    unit_of_measurement: "%"
-    entity_category: diagnostic
-
 text_sensor:
   - platform: wifi_info
     ip_address:
