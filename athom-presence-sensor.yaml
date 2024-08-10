@@ -10,3 +10,8 @@ packages:
   base_package: github://dexn/esphome-configs/packages/base.yaml@main
   fast_boot_package: github://dexn/esphome-configs/packages/fast_boot.yaml@main
   device_package: github://dexn/esphome-configs/devices/athom-presence-sensor.yaml@main
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: true
