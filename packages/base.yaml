@@ -35,19 +35,19 @@ button:
     name: Factory Reset
     id: Reset
     entity_category: config
-    web_server_sorting_weight: 3
+    web_server_sorting_weight: 23
 
   - platform: restart
     name: Restart Device
     id: Restart
     entity_category: config
-    web_server_sorting_weight: 1
+    web_server_sorting_weight: 21
 
   - platform: safe_mode
     name: "Safe Mode"
     id: Safe_mode
     entity_category: config
-    web_server_sorting_weight: 2
+    web_server_sorting_weight: 22
 
 sensor:
   - platform: uptime
