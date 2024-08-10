@@ -5,19 +5,12 @@ esp8266:
 preferences:
   flash_write_interval: 5min
 
-api:
-
-logger:
-
-ota:
-  - platform: esphome
+captive_portal:
 
 mdns:
 
 web_server:
   port: 80
-
-captive_portal:
 
 binary_sensor:
   - platform: status
