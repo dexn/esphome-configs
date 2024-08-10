@@ -21,7 +21,7 @@ binary_sensor:
       number: GPIO0
       mode: INPUT_PULLUP
       inverted: true
-    name: "Button"
+    name: Button
     disabled_by_default: true
     on_multi_click:
       - timing:
@@ -35,15 +35,18 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    name: "Pir Sensor"
+    name: Pir Sensor
     id: pir
     filters:
       - delayed_on: 50ms
       - delayed_off: 10s
     device_class: motion
     on_press:
-      then:
-        - light.turn_on: Status_led
+      if:
+        condition:
+          switch.is_on: presence_light
+          then:
+            - light.turn_on: Status_led
 
   - platform: gpio
     pin:
@@ -51,7 +54,7 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    name: "mmWave Sensor"
+    name: mmWave Sensor
     id: mmwave
     filters:
       - delayed_on: 50ms
@@ -61,7 +64,7 @@ binary_sensor:
         - light.turn_off: Status_led
 
   - platform: template
-    name: "Occupancy"
+    name: Occupancy
     id: occupancy
     device_class: occupancy
     lambda: |-
@@ -117,7 +120,7 @@ button:
 
 light:
   - platform: status_led
-    name: "Status LED"
+    name: Status LED
     id: Status_led
     pin: GPIO16
     disabled_by_default: true
@@ -262,14 +265,14 @@ number:
 
 sensor:
   - platform: bh1750
-    name: "Light Sensor"
+    name: Light Sensor
     address: 0x23
     update_interval: 5s
 
 switch:
   - platform: template
-    name: "mmWave Status"
-    id: "mmwave_sensor"
+    name: mmWave Status
+    id: mmwave_sensor
     internal: true
     entity_category: config
     optimistic: true
@@ -278,3 +281,9 @@ switch:
       - uart.write: "sensorStart\r\n"
     turn_off_action:
       - uart.write: "sensorStop\r\n"
+
+  - platform: template
+    name: Presence Light
+    id: presence_light
+    entity_category: config
+    restore_mode: RESTORE_DEFAULT_ON
