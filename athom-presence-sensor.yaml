@@ -2,6 +2,18 @@ substitutions:
   name: "athom-presence-sensor"
   friendly_name: "Athom Presence Sensor"
 
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: true
+
+logger:
+
+api:
+
+ota:
+  platform: esphome
+
 dashboard_import:
   package_import_url: github://dexn/esphome-configs/athom-presence-sensor.yaml@main
   import_full_config: true
@@ -10,11 +22,6 @@ packages:
   base_package: github://dexn/esphome-configs/packages/base.yaml@main
   fast_boot_package: github://dexn/esphome-configs/packages/fast_boot.yaml@main
   device_package: github://dexn/esphome-configs/devices/athom-presence-sensor.yaml@main
-
-esphome:
-  name: ${name}
-  friendly_name: ${friendly_name}
-  name_add_mac_suffix: true
 
 wifi:
   ap: {}
