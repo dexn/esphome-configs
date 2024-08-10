@@ -45,8 +45,8 @@ binary_sensor:
       if:
         condition:
           switch.is_on: presence_light
-          then:
-            - light.turn_on: Status_led
+        then:
+          - light.turn_on: Status_led
 
   - platform: gpio
     pin:
