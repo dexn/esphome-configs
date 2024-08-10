@@ -8,7 +8,6 @@ preferences:
 api:
 
 logger:
-  level: INFO
   
 ota:
   - platform: esphome
