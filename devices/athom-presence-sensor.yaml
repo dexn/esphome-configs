@@ -152,7 +152,7 @@ number:
       - uart.write: "saveConfig\r\n"
       - delay: 500ms
       - switch.turn_on: mmwave_sensor
-    web_server_sorting_weight: 2
+    web_server_sorting_weight: 22
 
   - platform: template
     name: Maintain Sensitivity                 #Value range: 0 ~ 9   Default Maintain sensitivity: 7    Default Trigger sensitivity: 5
@@ -175,7 +175,7 @@ number:
       - uart.write: "saveConfig\r\n"
       - delay: 500ms
       - switch.turn_on: mmwave_sensor
-    web_server_sorting_weight: 4
+    web_server_sorting_weight: 24
 
   - platform: template
     name: Trigger Sensitivity     #Value range: 0 ~ 9   Default Maintain sensitivity: 7    Default Trigger sensitivity: 5
@@ -198,7 +198,7 @@ number:
       - uart.write: "saveConfig\r\n"
       - delay: 500ms
       - switch.turn_on: mmwave_sensor
-    web_server_sorting_weight: 3
+    web_server_sorting_weight: 23
 
   - platform: template
     name: Detection Delay      #Confirmation delay      Value range: 0 ～ 100  default 0.050 seconds.
@@ -222,7 +222,7 @@ number:
       - uart.write: "saveConfig\r\n"
       - delay: 500ms
       - switch.turn_on: mmwave_sensor
-    web_server_sorting_weight: 7
+    web_server_sorting_weight: 27
 
   - platform: template
     name: Fading Time           #Fade-out delay        Value range: 0.5 ～ 1500, default 15 seconds.
@@ -246,7 +246,7 @@ number:
       - uart.write: "saveConfig\r\n"
       - delay: 500ms
       - switch.turn_on: mmwave_sensor
-    web_server_sorting_weight: 5
+    web_server_sorting_weight: 25
 
   - platform: template
     name: Blockade Time                  #Configure block time        Value range: 1 ～ 255, default 1 seconds.
@@ -270,7 +270,7 @@ number:
       - uart.write: "saveConfig\r\n"
       - delay: 500ms
       - switch.turn_on: mmwave_sensor
-    web_server_sorting_weight: 6
+    web_server_sorting_weight: 26
 
 sensor:
   - platform: bh1750
@@ -306,4 +306,4 @@ switch:
           - light.turn_on: Status_led
     on_turn_off:
       - light.turn_off: Status_led
-    web_server_sorting_weight: 1
+    web_server_sorting_weight: 21
