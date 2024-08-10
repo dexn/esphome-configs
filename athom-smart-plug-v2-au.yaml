@@ -12,3 +12,5 @@ packages:
   base_package: github://dexn/esphome-configs/packages/base.yaml@main
   fast_boot_package: github://dexn/esphome-configs/packages/fast_boot.yaml@main
   device_package: github://dexn/esphome-configs/devices/athom-smart-plug-v2-au.yaml@main
+
+esphome:
