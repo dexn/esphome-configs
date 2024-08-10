@@ -28,26 +28,26 @@ binary_sensor:
   - platform: status
     name: "Status"
     entity_category: diagnostic    
-    web_server_sorting_weight: 1
+    web_server_sorting_weight: 41
 
 button:
   - platform: factory_reset
     name: Factory Reset
     id: Reset
     entity_category: config
-    web_server_sorting_weight: 23
+    web_server_sorting_weight: 33
 
   - platform: restart
     name: Restart Device
     id: Restart
     entity_category: config
-    web_server_sorting_weight: 21
+    web_server_sorting_weight: 31
 
   - platform: safe_mode
     name: "Safe Mode"
     id: Safe_mode
     entity_category: config
-    web_server_sorting_weight: 22
+    web_server_sorting_weight: 32
 
 sensor:
   - platform: uptime
@@ -61,7 +61,7 @@ sensor:
     id: wifi_signal_db
     update_interval: 60s
     entity_category: diagnostic
-    web_server_sorting_weight: 8
+    web_server_sorting_weight: 48
 
   # Reports the WiFi signal strength in %
   - platform: copy
@@ -72,30 +72,30 @@ sensor:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"
     entity_category: diagnostic
-    web_server_sorting_weight: 7
+    web_server_sorting_weight: 47
 
 text_sensor:
   - platform: wifi_info
     ip_address:
       name: IP Address
       entity_category: diagnostic
-      web_server_sorting_weight: 5
+      web_server_sorting_weight: 45
     ssid:
       name: Connected SSID
       entity_category: diagnostic
-      web_server_sorting_weight: 4
+      web_server_sorting_weight: 44
     mac_address:
       name: Mac Address
       entity_category: diagnostic
       disabled_by_default: true
-      web_server_sorting_weight: 6
+      web_server_sorting_weight: 46
 
   - platform: template
     name: 'Last Restart'
     id: device_last_restart
     icon: mdi:clock
     entity_category: diagnostic
-    web_server_sorting_weight: 3
+    web_server_sorting_weight: 43
 
   - platform: template
     name: "Uptime"
@@ -120,7 +120,7 @@ text_sensor:
         return { (String(seconds) +"s").c_str() };
       }
     icon: mdi:clock-start
-    web_server_sorting_weight: 2
+    web_server_sorting_weight: 42
 
 time:
   - platform: sntp
