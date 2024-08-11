@@ -1,7 +1,7 @@
 substitutions:
   name: athom-rgbw-light
   friendly_name: Athom RGBW Light
-  light_restore_mode: RESTORE_DEFAULT_OFF
+  restore_mode: RESTORE_DEFAULT_OFF
 
 esphome:
   name: "${name}"
