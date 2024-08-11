@@ -17,33 +17,31 @@ binary_sensor:
       mode: INPUT_PULLDOWN_16
       inverted: true
     name: Button
-    on_click:
-    - min_length: 50ms
-      max_length: 350ms
-      then:
-        - switch.toggle: power
-    on_double_click:
-      min_length: 50ms
-      max_length: 350ms
-      then:
-        - lambda: |-
-            static int effect_index = 0; // this value will persist across triggers
-            id(Light).turn_on().set_effect(id(Light).get_effects().at(effect_index)->get_name().c_str()).perform();
-            
-            effect_index += 1;
-            if (effect_index >= id(Light).get_effects().size()) {
-              effect_index = 0; // restart from the beginning once the last effect is reached
-            }
-            return;
     on_multi_click:
+      - timing:
+          - ON for at most 1s
+          - OFF for at least 0.5s
+        then:
+          - switch.toggle: power
+      - timing:
+          - ON for at most 1s
+          - OFF for at most 1s
+          - ON for at most 1s
+          - OFF for at least 0.2s
+        then:
+          - lambda: |-
+              static int effect_index = 0; // this value will persist across triggers
+              id(Light).turn_on().set_effect(id(Light).get_effects().at(effect_index)->get_name().c_str()).perform();
+              
+              effect_index += 1;
+              if (effect_index >= id(Light).get_effects().size()) {
+                effect_index = 0; // restart from the beginning once the last effect is reached
+              }
+              return;
       - timing:
           - ON for at least 4s
         then:
-          - button.press: factory_reset_device
-
-button:
-  - platform: restart
-    name: Restart
+          - button.press: Reset
 
 fan:
   platform: speed
