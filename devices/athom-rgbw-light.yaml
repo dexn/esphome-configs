@@ -27,6 +27,16 @@ binary_sensor:
         then:
           - button.press: Reset
 
+light:
+  - platform: rgbw
+    name: "Light"
+    id: Light
+    red: output_red
+    green: output_green
+    blue: output_blue
+    white: output_white
+    color_interlock: true
+
 output:
   - platform: esp8266_pwm
     id: output_red
@@ -43,13 +53,3 @@ output:
   - platform: esp8266_pwm
     id: output_white
     pin: GPIO13
-
-light:
-  - platform: rgbw
-    name: "RGBW_Controller"
-    id: Light
-    red: output_red
-    green: output_green
-    blue: output_blue
-    white: output_white
-    color_interlock: true
