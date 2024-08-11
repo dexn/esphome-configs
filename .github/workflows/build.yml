@@ -19,6 +19,7 @@ jobs:
     uses: esphome/workflows/.github/workflows/build.yml@main
     with:
       files: |
+        arlec-rgbcct-light.yaml
         athom-presence-sensor.yaml
         athom-rgbw-light.yaml
         athom-smart-plug-v2.yaml
