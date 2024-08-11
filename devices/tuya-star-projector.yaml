@@ -1,5 +1,5 @@
 esphome:
-  comment: "Galaxy / Laser Star Projector"
+  comment: "Tuya Galaxy / Laser Star Projector"
   project:
     name: "Tuya.Star Projector"
     version: "1.0.0"
