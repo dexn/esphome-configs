@@ -1,4 +1,5 @@
 esphome:
+  comment: "Athom RGBW Light Strip Controller"
   min_version: 2024.6.0
   project:
     name: "Athom Technology.RGBW Light Strip Controller"
