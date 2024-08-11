@@ -1,5 +1,5 @@
 esphome:
-  comment: "Arlec RGBCCT Light Bulb"
+  comment: "Arlec Grid Connect RGBCCT Light Bulb"
   project:
     name: "Arlec Grid Connect.RGBCCT Light Bulb"
     version: "1.0.0"
