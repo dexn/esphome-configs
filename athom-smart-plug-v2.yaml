@@ -11,6 +11,7 @@ esphome:
   name_add_mac_suffix: true
 
 logger:
+  level: INFO
 
 api:
 
@@ -18,7 +19,7 @@ ota:
   platform: esphome
 
 wifi:
-  ap: {}
+  ap:
 
 dashboard_import:
   package_import_url: github://dexn/esphome-configs/athom-smart-plug-v2.yaml@main
