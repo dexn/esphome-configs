@@ -1,9 +1,9 @@
+substitutions:
+  project_version: "1.0.1"
+
 esphome:
   min_version: 2024.6.0
   comment: "mmWave Radar Human Presence Sensor"
-  project:
-    name: "Athom Technology.Presence Sensor"
-    version: "1.0.1"
 
 i2c:
   sda: GPIO4
