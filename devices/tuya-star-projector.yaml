@@ -1,4 +1,5 @@
 esphome:
+  min_version: 2024.6.0
   comment: "Tuya Galaxy / Laser Star Projector"
   project:
     name: "Tuya.Star Projector"
