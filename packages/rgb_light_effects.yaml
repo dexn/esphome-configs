@@ -5,7 +5,7 @@ light:
           name: randomflicker
           update_interval: 200 ms
           lambda: |-
-            auto call = id(leds).turn_on();
+            auto call = id(Light).turn_on();
             float r = random_float() * 2.0f - 1.0f; 
             r =  r * r * r;
             call.set_transition_length(r);
@@ -19,7 +19,7 @@ light:
           name: Chill Mode
           update_interval: 70s
           lambda: |-
-            auto call = id(leds).turn_on();
+            auto call = id(Light).turn_on();
             call.set_transition_length(55000);
             call.set_white(0.0);
             esphome::Color c = esphome::Color::random_color();
@@ -32,7 +32,7 @@ light:
           name: Chill Mode (Vibrant)
           update_interval: 120s
           lambda: |-
-            auto call = id(leds).turn_on();
+            auto call = id(Light).turn_on();
             call.set_transition_length(800);
             call.set_white(0.0);
             esphome::Color c = esphome::Color::random_color();
@@ -45,7 +45,7 @@ light:
           name: Disco
           update_interval: 500ms
           lambda: |-
-            auto call = id(leds).turn_on();
+            auto call = id(Light).turn_on();
             //call.set_transition_length(rand() % 400 + 1);
             call.set_transition_length(500);
             call.set_white(0.0);
@@ -59,7 +59,7 @@ light:
           name: WTF
           update_interval: 200ms
           lambda: |-
-            auto call = id(leds).turn_on();
+            auto call = id(Light).turn_on();
             call.set_transition_length(200);
             call.set_white(0.0);
             call.set_brightness((rand() % 255 + 1) / 255.0);
@@ -171,7 +171,7 @@ light:
           lambda: |-
             static int state = 0;
             static int color = 1;
-            auto call = id(leds).turn_on(); //the id of your light
+            auto call = id(Light).turn_on();
             call.set_transition_length(15000);
             if (state == 0) 
             {
@@ -205,7 +205,7 @@ light:
             #define Color12 1.0, 0.0, 0.5
             static int state = 0;
             static int color = 1;
-            auto call = id(leds).turn_on(); //put the id for your light in here
+            auto call = id(Light).turn_on();
             call.set_white(0.0);
             call.set_transition_length(15000);
             if (state == 0) 
