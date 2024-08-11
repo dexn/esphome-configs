@@ -1,4 +1,5 @@
 esphome:
+  min_version: 2024.6.0
   comment: "Arlec Grid Connect RGBCCT Light Bulb"
   project:
     name: "Arlec Grid Connect.RGBCCT Light Bulb"
