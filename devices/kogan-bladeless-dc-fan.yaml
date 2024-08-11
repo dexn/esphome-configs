@@ -1,4 +1,5 @@
 esphome:
+  min_version: 2024.6.0
   comment: "Kogan SmarterHome Bladeless DC Fan"
   project:
     name: "Kogan SmarterHome.Bladeless DC Fan"
