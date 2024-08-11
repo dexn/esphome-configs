@@ -20,6 +20,7 @@ jobs:
     with:
       files: |
         athom-presence-sensor.yaml
+        athom-rgbw-light.yaml
         athom-smart-plug-v2.yaml
         tuya-star-projector.yaml
       esphome-version: 2024.7.3
