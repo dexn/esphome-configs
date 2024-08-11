@@ -21,6 +21,7 @@ jobs:
       files: |
         athom-presence-sensor.yaml
         athom-smart-plug-v2.yaml
+        tuya-star-projector.yaml
       esphome-version: 2024.7.3
       release-summary: ${{ github.event_name == 'release' && github.event.release.body || '' }}
       release-url: ${{ github.event_name == 'release' && github.event.release.html_url || '' }}
