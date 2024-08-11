@@ -1,7 +1,7 @@
 esphome:
   comment: "Galaxy / Laser Star Projector"
   project:
-    name: "Tuya.Smart Star Projector"
+    name: "Tuya.Star Projector"
     version: "1.0.0"
 
 esp8266:
@@ -28,10 +28,10 @@ binary_sensor:
       then:
         - lambda: |-
             static int effect_index = 0; // this value will persist across triggers
-            id(rgb_light).turn_on().set_effect(id(rgb_light).get_effects().at(effect_index)->get_name().c_str()).perform();
+            id(Light).turn_on().set_effect(id(Light).get_effects().at(effect_index)->get_name().c_str()).perform();
             
             effect_index += 1;
-            if (effect_index >= id(rgb_light).get_effects().size()) {
+            if (effect_index >= id(Light).get_effects().size()) {
               effect_index = 0; // restart from the beginning once the last effect is reached
             }
             return;
@@ -56,10 +56,10 @@ fan:
       if:
         condition:
           and:
-            - light.is_off: rgb_light
+            - light.is_off: Light
             - light.is_off: laser
         then:
-          - light.turn_on: rgb_light
+          - light.turn_on: Light
           - light.turn_on: laser
 
 interval:
@@ -91,7 +91,7 @@ interval:
 light:
   - platform: rgb
     name: Light
-    id: rgb_light
+    id: Light
     red: red
     green: green
     blue: blue
@@ -121,7 +121,7 @@ light:
           name: Random Flicker
           update_interval: 200 ms
           lambda: |-
-            auto call = id(rgb_light).turn_on();
+            auto call = id(Light).turn_on();
             float r = random_float() * 2.0f - 1.0f; 
             r =  r * r * r;
             call.set_transition_length(r);
@@ -135,7 +135,7 @@ light:
           name: Chill Mode
           update_interval: 70s
           lambda: |-
-            auto call = id(rgb_light).turn_on();
+            auto call = id(Light).turn_on();
             call.set_transition_length(55000);
             call.set_white(0.0);
             esphome::Color c = esphome::Color::random_color();
@@ -148,7 +148,7 @@ light:
           name: Chill Mode (Vibrant)
           update_interval: 120s
           lambda: |-
-            auto call = id(rgb_light).turn_on();
+            auto call = id(Light).turn_on();
             call.set_transition_length(800);
             call.set_white(0.0);
             esphome::Color c = esphome::Color::random_color();
@@ -161,7 +161,7 @@ light:
           name: Disco
           update_interval: 500ms
           lambda: |-
-            auto call = id(rgb_light).turn_on();
+            auto call = id(Light).turn_on();
             //call.set_transition_length(rand() % 400 + 1);
             call.set_transition_length(500);
             call.set_white(0.0);
@@ -175,7 +175,7 @@ light:
           name: WTF
           update_interval: 200ms
           lambda: |-
-            auto call = id(rgb_light).turn_on();
+            auto call = id(Light).turn_on();
             call.set_transition_length(200);
             call.set_white(0.0);
             call.set_brightness((rand() % 255 + 1) / 255.0);
@@ -287,7 +287,7 @@ light:
           lambda: |-
             static int state = 0;
             static int color = 1;
-            auto call = id(rgb_light).turn_on(); //the id of your light
+            auto call = id(Light).turn_on(); //the id of your light
             call.set_transition_length(15000);
             if (state == 0) 
             {
@@ -321,7 +321,7 @@ light:
             #define Color12 1.0, 0.0, 0.5
             static int state = 0;
             static int color = 1;
-            auto call = id(rgb_light).turn_on(); //put the id for your light in here
+            auto call = id(Light).turn_on(); //put the id for your light in here
             call.set_white(0.0);
             call.set_transition_length(15000);
             if (state == 0) 
@@ -405,7 +405,7 @@ light:
       then:
         if:
           condition:
-            light.is_off: rgb_light
+            light.is_off: Light
           then:
             - fan.turn_off: motor
             - switch.template.publish:
@@ -475,7 +475,7 @@ switch:
     id: power
     turn_on_action:
       - light.turn_on:
-          id: rgb_light
+          id: Light
           brightness: 50%
           effect: Slow Random Effect
       - light.turn_on: 
@@ -486,7 +486,7 @@ switch:
           speed: 10
     turn_off_action:
       - light.turn_off:
-          id: rgb_light
+          id: Light
       - light.turn_off: 
           id: laser
       - fan.turn_off:
