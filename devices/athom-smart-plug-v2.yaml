@@ -8,9 +8,9 @@ esphome:
 logger:
   baud_rate: 0
 
-# Dentra Components - Adds 'Platform - Energy Statistics'
-# https://github.com/dentra/esphome-components/tree/master/components/energy_statistics
 external_components:
+  # Dentra Components - Adds 'Platform - Energy Statistics'
+  # https://github.com/dentra/esphome-components/tree/master/components/energy_statistics
   - source: github://dentra/esphome-components
 
 uart:
@@ -57,7 +57,8 @@ sensor:
       name: "Current"
       filters:
         - throttle_average: ${update_interval}
-        - lambda: if (x < 0.060) return 0.0; else return x;   #For the chip will report less than 3w power when no load is connected
+        #For the chip will report less than 3w power when no load is connected
+        - lambda: if (x < 0.060) return 0.0; else return x;
       on_value_range:
         - above: 10
           then:
@@ -73,7 +74,8 @@ sensor:
       id: power_sensor
       filters:
         - throttle_average: ${update_interval}
-        - lambda: if (x < 3.0) return 0.0; else return x;    #For the chip will report less than 3w power when no load is connected
+        #For the chip will report less than 3w power when no load is connected
+        - lambda: if (x < 3.0) return 0.0; else return x;
 
     energy:
       name: "Energy"
