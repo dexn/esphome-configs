@@ -25,5 +25,6 @@ dashboard_import:
 
 packages:
   base_package: github://dexn/esphome-configs/packages/base.yaml@main
-  fast_boot_package: github://dexn/esphome-configs/packages/fast_boot_light.yaml@main
+  fast_boot_light_package: github://dexn/esphome-configs/packages/fast_boot_light.yaml@main
+  rgb_light_effects_package: github://dexn/esphome-configs/packages/fast_boot_light.yaml@main
   device_package: github://dexn/esphome-configs/devices/athom-rgbw-light.yaml@main
