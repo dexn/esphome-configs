@@ -1,3 +1,4 @@
+# Fast boot factory reset script for devices without a light or status led
 esphome:
   on_boot:
     then:
