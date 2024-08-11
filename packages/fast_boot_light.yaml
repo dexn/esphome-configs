@@ -1,3 +1,4 @@
+# Fast boot factory reset script for devices that are lights
 esphome:
   on_boot:
     then:
