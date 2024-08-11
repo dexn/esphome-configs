@@ -1,13 +1,13 @@
 substitutions:
-  name: "athom-smart-plug-v2"
-  friendly_name: "Athom Smart Plug V2"
+  name: athom-smart-plug-v2
+  friendly_name: Athom Smart Plug V2
   restore_mode: RESTORE_DEFAULT_OFF
   update_interval: 10s
   current_limit : "10"
 
 esphome:
-  name: ${name}
-  friendly_name: ${friendly_name}
+  name: "${name}"
+  friendly_name: "${friendly_name}"
   name_add_mac_suffix: true
 
 logger:
