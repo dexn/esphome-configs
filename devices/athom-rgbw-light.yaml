@@ -36,6 +36,7 @@ light:
     green: output_green
     blue: output_blue
     white: output_white
+    restore_mode: ${restore_mode}
     color_interlock: true
 
 output:
