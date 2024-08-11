@@ -1,0 +1,493 @@
+esphome:
+  comment: "Galaxy / Laser Star Projector"
+  project:
+    name: "Tuya.Smart Star Projector"
+    version: "1.0.0"
+
+esp8266:
+  board: esp01_1m
+
+binary_sensor:
+  - platform: status
+    name: Status
+
+  - platform: gpio
+    pin: 
+      number: GPIO16
+      mode: INPUT_PULLDOWN_16
+      inverted: true
+    name: Button
+    on_click:
+    - min_length: 50ms
+      max_length: 350ms
+      then:
+        - switch.toggle: power
+    on_double_click:
+      min_length: 50ms
+      max_length: 350ms
+      then:
+        - lambda: |-
+            static int effect_index = 0; // this value will persist across triggers
+            id(rgb_light).turn_on().set_effect(id(rgb_light).get_effects().at(effect_index)->get_name().c_str()).perform();
+            
+            effect_index += 1;
+            if (effect_index >= id(rgb_light).get_effects().size()) {
+              effect_index = 0; // restart from the beginning once the last effect is reached
+            }
+            return;
+    on_multi_click:
+      - timing:
+          - ON for at least 4s
+        then:
+          - button.press: factory_reset_device
+
+button:
+  - platform: restart
+    name: Restart
+
+fan:
+  platform: speed
+  name: Speed
+  id: motor
+  output: motor_pwm
+  restore_mode: ALWAYS_OFF
+  on_turn_on:
+    then:
+      if:
+        condition:
+          and:
+            - light.is_off: rgb_light
+            - light.is_off: laser
+        then:
+          - light.turn_on: rgb_light
+          - light.turn_on: laser
+
+interval:
+  - interval: 1s
+    then:
+      if:
+        condition:
+          wifi.connected:
+        then:
+          - light.turn_on: 
+              id: bled
+              brightness: 50%
+        else:
+          - light.turn_off: 
+              id: bled
+  - interval: 1s
+    then:
+      if:
+        condition:
+          api.connected:
+        then:
+          - light.turn_on: 
+              id: rled
+              brightness: 50%
+        else:
+          - light.turn_off: 
+              id: rled
+
+light:
+  - platform: rgb
+    name: Light
+    id: rgb_light
+    red: red
+    green: green
+    blue: blue
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      then:
+        - switch.template.publish:
+            id: power
+            state: ON
+    on_turn_off:
+      then:
+        if:
+          condition:
+            light.is_off: laser
+          then:
+            - fan.turn_off: motor
+            - switch.template.publish:
+                id: power
+                state: OFF
+    effects:
+      - flicker:
+          name: Flicker
+          alpha: 95%
+          intensity: 2.5%
+
+      - lambda:
+          name: Random Flicker
+          update_interval: 200 ms
+          lambda: |-
+            auto call = id(rgb_light).turn_on();
+            float r = random_float() * 2.0f - 1.0f; 
+            r =  r * r * r;
+            call.set_transition_length(r);
+            //static double br=id(global_brightness);
+            call.set_brightness(0.7 + r/10);
+            call.set_publish(false);
+            call.set_save(false);
+            call.perform();
+
+      - lambda:
+          name: Chill Mode
+          update_interval: 70s
+          lambda: |-
+            auto call = id(rgb_light).turn_on();
+            call.set_transition_length(55000);
+            call.set_white(0.0);
+            esphome::Color c = esphome::Color::random_color();
+            call.set_rgb((c.red%255)/255.0, (c.green%255)/255.0, (c.blue%255)/255.0);
+            call.set_publish(false);
+            call.set_save(false);
+            call.perform();
+
+      - lambda:
+          name: Chill Mode (Vibrant)
+          update_interval: 120s
+          lambda: |-
+            auto call = id(rgb_light).turn_on();
+            call.set_transition_length(800);
+            call.set_white(0.0);
+            esphome::Color c = esphome::Color::random_color();
+            call.set_rgb((c.red%128)/255.0, (c.green%128)/255.0, (c.blue%128)/255.0);
+            call.set_publish(false);
+            call.set_save(false);
+            call.perform();
+
+      - lambda:
+          name: Disco
+          update_interval: 500ms
+          lambda: |-
+            auto call = id(rgb_light).turn_on();
+            //call.set_transition_length(rand() % 400 + 1);
+            call.set_transition_length(500);
+            call.set_white(0.0);
+            esphome::Color c = esphome::Color::random_color();
+            call.set_rgb((c.red)/255.0, (c.green)/255.0, (c.blue)/255.0);
+            call.set_publish(false);
+            call.set_save(false);
+            call.perform();
+
+      - lambda:
+          name: WTF
+          update_interval: 200ms
+          lambda: |-
+            auto call = id(rgb_light).turn_on();
+            call.set_transition_length(200);
+            call.set_white(0.0);
+            call.set_brightness((rand() % 255 + 1) / 255.0);
+            call.set_color_temperature(rand() % 2 == 0 ? 0: 512);
+            call.perform();
+
+      - strobe:
+          name: Lightning
+          colors:
+            - state: True
+              brightness: 100%
+              red: 90%
+              green: 90%
+              blue: 100%
+              white: 0%
+              duration: 50ms
+
+            - state: False
+              duration: 50ms
+
+            - state: True
+              brightness: 100%
+              red: 90%
+              green: 90%
+              blue: 100%
+              white: 0%
+              duration: 160ms
+
+            - state: False
+              duration: 50ms
+
+            - state: True
+              brightness: 100%
+              red: 90%
+              green: 90%
+              blue: 100%
+              white: 0%
+              duration: 50ms
+
+            - state: False
+              duration: 3000ms
+
+      - strobe:
+          name: In Alarm
+          colors:
+            - state: True
+              red: 100%
+              blue: 0%
+              green: 0%
+              white: 0%
+              duration: 150ms
+
+            - state: False
+              duration: 100ms
+
+            - state: True
+              red: 100%
+              blue: 0%
+              green: 0%
+              white: 0%  
+              duration: 150ms
+
+            - state: False
+              duration: 100ms
+
+            - state: True
+              red: 0%
+              blue: 100%
+              green: 0%
+              white: 0%
+              duration: 150ms
+
+            - state: False
+              duration: 100ms
+
+            - state: True
+              red: 0%
+              blue: 100%
+              green: 0%
+              white: 0%
+              duration: 150ms
+
+            - state: False
+              duration: 100ms
+
+      - strobe:
+          name: Strobe Effect
+          colors:
+            - state: True
+              red: 100%
+              green: 90%
+              blue: 0%
+              white: 0%
+              duration: 50ms
+
+            - state: False
+              duration: 25ms
+
+            - state: True
+              red: 0%
+              green: 100%
+              blue: 0%
+              white: 0%
+              duration: 50ms
+
+      - lambda:
+          name: Breathing
+          update_interval: 16s
+          lambda: |-
+            static int state = 0;
+            static int color = 1;
+            auto call = id(rgb_light).turn_on(); //the id of your light
+            call.set_transition_length(15000);
+            if (state == 0) 
+            {
+              call.set_brightness(1.0);
+            }
+            else if (state == 1)
+            {
+              call.set_brightness(0.01);
+            }
+            call.perform();
+            state ++;
+            if (state == 2){
+            state = 0;
+            }
+
+      - lambda:
+          name: RGB Breathing
+          update_interval: 16s
+          lambda: |-
+            #define Color1 1.0, 0.0, 0.0 //These are the colors defined, feel free to change or extend the list
+            #define Color2 1.0, 0.5, 0.0 //if you extend the list, dont forget to add them in the switch loop below
+            #define Color3 1.0, 1.0, 0.0 //and remember to adjust the reset counter at the bottom
+            #define Color4 0.5, 1.0, 0.0
+            #define Color5 0.0, 1.0, 0.0
+            #define Color6 0.0, 1.0, 0.5
+            #define Color7 0.0, 1.0, 1.0
+            #define Color8 0.0, 0.5, 1.0
+            #define Color9 0.0, 0.0, 1.0
+            #define Color10 0.5, 0.0, 1.0
+            #define Color11 0.5, 0.0, 1.0
+            #define Color12 1.0, 0.0, 0.5
+            static int state = 0;
+            static int color = 1;
+            auto call = id(rgb_light).turn_on(); //put the id for your light in here
+            call.set_white(0.0);
+            call.set_transition_length(15000);
+            if (state == 0) 
+            {
+              call.set_brightness(0.01);
+            }
+            else if (state == 1)
+            {
+              switch(color)
+              {
+                case 1: call.set_rgb(Color1);
+                  break;
+                case 2: call.set_rgb(Color2);
+                  break;
+                case 3: call.set_rgb(Color3);
+                  break;
+                case 4: call.set_rgb(Color4);
+                  break;
+                case 5: call.set_rgb(Color5);
+                  break;
+                case 6: call.set_rgb(Color6);
+                  break;
+                case 7: call.set_rgb(Color7);
+                  break;
+                case 8: call.set_rgb(Color8);
+                  break;
+                case 9: call.set_rgb(Color9);
+                  break;
+                case 10: call.set_rgb(Color10);
+                  break;
+                case 11: call.set_rgb(Color11);
+                  break;
+                case 12: call.set_rgb(Color12);
+                  break;
+              }
+              call.set_brightness(1.0);
+            }
+            state ++;
+            if (state == 2)
+            {
+              state = 0;
+            }
+            color++;
+            if(color == 7)
+            {
+              color = 1;
+            }
+            call.perform();
+
+      - random:          
+          name: Slow Random Effect
+          transition_length: 20s
+          update_interval: 20s
+
+      - random:
+          name: Fast Random Effect
+          transition_length: 4s
+          update_interval: 5s
+
+      - random:
+          name: Insane Random Effect
+          transition_length: 1s
+          update_interval: 1s
+
+      - random:          
+          name: Totally Loco Random Effect
+          transition_length: 300ms
+          update_interval: 250ms
+
+  - platform: monochromatic
+    name: Laser
+    id: laser
+    output: laser_pwm
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      then:
+        - switch.template.publish:
+            id: power
+            state: ON
+    on_turn_off:
+      then:
+        if:
+          condition:
+            light.is_off: rgb_light
+          then:
+            - fan.turn_off: motor
+            - switch.template.publish:
+                id: power
+                state: OFF
+
+
+  - platform: monochromatic
+    name: bled
+    id: bled
+    output: bled_pwm
+    restore_mode: ALWAYS_OFF
+    internal: true
+
+  - platform: monochromatic
+    name: rled
+    id: rled
+    output: rled_pwm
+    restore_mode: ALWAYS_OFF
+    internal: true
+
+output:
+  - platform: esp8266_pwm
+    id: red
+    pin: GPIO4
+    inverted: true
+
+  - platform: esp8266_pwm
+    id: green
+    pin: GPIO12
+    inverted: true
+
+  - platform: esp8266_pwm
+    id: blue
+    pin: GPIO14
+    inverted: true
+
+  - platform: esp8266_pwm
+    id: laser_pwm
+    pin: GPIO5
+    # max_power: 80%
+    # frequency: 2000 Hz
+    inverted: true
+
+  - platform: esp8266_pwm
+    id: motor_pwm
+    pin: GPIO13
+    min_power: 15%
+
+  - platform: esp8266_pwm
+    id: bled_pwm
+    pin: GPIO0
+    inverted: true
+
+  - platform: esp8266_pwm
+    id: rled_pwm
+    pin: GPIO15
+    inverted: true
+
+sensor:
+  - platform: uptime
+    name: Uptime
+
+switch:
+  - platform: template
+    name: Power
+    id: power
+    turn_on_action:
+      - light.turn_on:
+          id: rgb_light
+          brightness: 50%
+          effect: Slow Random Effect
+      - light.turn_on: 
+          id: laser
+          brightness: 65%
+      - fan.turn_on:
+          id: motor
+          speed: 10
+    turn_off_action:
+      - light.turn_off:
+          id: rgb_light
+      - light.turn_off: 
+          id: laser
+      - fan.turn_off:
+          id: motor
