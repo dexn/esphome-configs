@@ -1,6 +1,5 @@
 light:
-  - platform: rgbw
-    id: !extend Light
+  - id: !extend Light
     effects:
       - lambda:
           name: randomflicker
