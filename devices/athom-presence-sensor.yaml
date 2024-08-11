@@ -1,6 +1,6 @@
 esphome:
   min_version: 2024.6.0
-  comment: "mmWave Radar Human Presence Sensor"
+  comment: "Athom mmWave Radar Human Presence Sensor"
   project:
     name: "Athom Technology.Presence Sensor"
     version: "1.0.1"
