@@ -8,7 +8,7 @@ esphome:
   name_add_mac_suffix: true
   project:
     name: "Athom Technology.Presence Sensor"
-    version: "${project_version}"
+    version: "1.0.1"
 
 logger:
 
