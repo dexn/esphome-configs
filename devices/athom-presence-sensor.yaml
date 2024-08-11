@@ -22,11 +22,11 @@ uart:
 
 binary_sensor:
   - platform: gpio
+    name: Button
     pin:
       number: GPIO0
       mode: INPUT_PULLUP
       inverted: true
-    name: Button
     disabled_by_default: true
     on_multi_click:
       - timing:
@@ -35,13 +35,13 @@ binary_sensor:
           - button.press: factory_reset_device
 
   - platform: gpio
+    name: Pir Sensor
+    id: pir
     pin:
       number: GPIO14
       mode:
         input: true
         pullup: true
-    name: Pir Sensor
-    id: pir
     filters:
       - delayed_on: 50ms
       - delayed_off: 10s
@@ -54,13 +54,13 @@ binary_sensor:
           - light.turn_on: Status_led
 
   - platform: gpio
+    name: mmWave Sensor
+    id: mmwave
     pin:
       number: GPIO12
       mode:
         input: true
         pullup: true
-    name: mmWave Sensor
-    id: mmwave
     filters:
       - delayed_on: 50ms
     device_class: motion
@@ -85,8 +85,8 @@ binary_sensor:
 
 button:
   - platform: factory_reset
-    id: !extend Reset
     name: Reset
+    id: !extend Reset
     internal: true
 
   - platform: template
