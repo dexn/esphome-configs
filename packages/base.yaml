@@ -1,3 +1,4 @@
+# Base config for all devices
 preferences:
   flash_write_interval: 5min
 
