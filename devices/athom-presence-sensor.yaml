@@ -1,3 +1,12 @@
+esphome:
+  min_version: 2024.6.0
+  comment: "mmWave Radar Human Presence Sensor"
+  project:
+    name: "Athom Technology.Presence Sensor"
+    version: "1.0.1"
+
+improv_serial:
+
 i2c:
   sda: GPIO4
   scl: GPIO5
@@ -5,7 +14,6 @@ i2c:
 
 uart:
   tx_pin: GPIO15
-  rx_pin: GPIO13
   baud_rate: 115200
 
 binary_sensor:
