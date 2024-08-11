@@ -27,5 +27,5 @@ dashboard_import:
 
 packages:
   base_package: github://dexn/esphome-configs/packages/base.yaml@main
-  fast_boot_package: github://dexn/esphome-configs/packages/fast_boot.yaml@main
+  fast_boot_package: github://dexn/esphome-configs/packages/fast_boot_status.yaml@main
   device_package: github://dexn/esphome-configs/devices/athom-smart-plug-v2.yaml@main
