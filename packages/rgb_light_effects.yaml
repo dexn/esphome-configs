@@ -1,3 +1,4 @@
+# RGB PWM light effects - needs cleaning up
 light:
   - id: !extend Light
     effects:
