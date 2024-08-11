@@ -11,11 +11,11 @@ esp8266:
 
 binary_sensor:
   - platform: gpio
+    name: "Power Button"
     pin:
       number: 0
       mode: INPUT_PULLUP
       inverted: true
-    name: "Power Button"
     disabled_by_default: true
     on_multi_click:
       - timing:
