@@ -8,9 +8,6 @@ esp8266:
   board: esp01_1m
 
 binary_sensor:
-  - platform: status
-    name: Status
-
   - platform: gpio
     pin: 
       number: GPIO16
@@ -462,10 +459,6 @@ output:
     id: rled_pwm
     pin: GPIO15
     inverted: true
-
-sensor:
-  - platform: uptime
-    name: Uptime
 
 switch:
   - platform: template
