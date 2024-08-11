@@ -3,8 +3,6 @@ esphome:
   project:
     name: "Kogan SmarterHome.Bladeless DC Fan"
     version: "1.0.0"
-  name: kogan-bladeless-dc-fan
-  friendly_name: Kogan Bladeless DC Fan
 
 esp8266:
   board: esp01_1m
