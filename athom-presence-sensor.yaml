@@ -20,6 +20,8 @@ ota:
 wifi:
   ap: {}
 
+improv_serial:
+
 web_server: !remove
 
 dashboard_import:
