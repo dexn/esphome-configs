@@ -21,7 +21,7 @@ binary_sensor:
           - ON for at most 1s
           - OFF for at least 0.2s
         then:
-          - light.toggle: leds
+          - light.toggle: Light
       - timing:
           - ON for at least 4s
         then:
@@ -47,7 +47,7 @@ output:
 light:
   - platform: rgbw
     name: "RGBW_Controller"
-    id: leds
+    id: Light
     red: output_red
     green: output_green
     blue: output_blue
