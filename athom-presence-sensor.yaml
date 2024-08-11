@@ -1,10 +1,10 @@
 substitutions:
-  name: "athom-presence-sensor"
-  friendly_name: "Athom Presence Sensor"
+  name: athom-presence-sensor
+  friendly_name: Athom Presence Sensor
 
 esphome:
-  name: ${name}
-  friendly_name: ${friendly_name}
+  name: "${name}"
+  friendly_name: "${friendly_name}"`
   name_add_mac_suffix: true
   project:
     name: "Athom Technology.Presence Sensor"
