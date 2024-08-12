@@ -25,6 +25,7 @@ jobs:
         athom-smart-plug-v2.yaml
         kogan-bladeless-dc-fan.yaml
         kogan-smart-power-board.yaml
+        mirabella-rgbw-light.yaml
         tuya-star-projector.yaml
       esphome-version: 2024.7.3
       release-summary: ${{ github.event_name == 'release' && github.event.release.body || '' }}
