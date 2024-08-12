@@ -24,7 +24,7 @@ light:
     cold_white_color_temperature: 6000 K
     warm_white_color_temperature: 3000 K
     restore_mode: ${restore_mode}
-    color_interlock: true
+    color_interlock: ${color_interlock}
 
 output:
   - platform: esp8266_pwm
