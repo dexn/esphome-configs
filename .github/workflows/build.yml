@@ -22,6 +22,7 @@ jobs:
         arlec-rgbcct-light.yaml
         athom-presence-sensor.yaml
         athom-rgbw-light.yaml
+        athom-rgbww-light.yaml
         athom-smart-plug-v2.yaml
         kogan-bladeless-dc-fan.yaml
         kogan-rgbw-light.yaml
