@@ -21,7 +21,7 @@ light:
     blue: output_blue
     white: output_white
     restore_mode: ${restore_mode}
-    color_interlock: true
+    color_interlock: ${color_interlock}
 
 output:
   - platform: esp8266_pwm
