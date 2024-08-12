@@ -2,6 +2,7 @@ substitutions:
   name: kogan-rgbw-light
   friendly_name: Kogan RGBW Light Bulb
   restore_mode: RESTORE_DEFAULT_OFF
+  color_interlock: 'true'
 
 esphome:
   name: "${name}"
