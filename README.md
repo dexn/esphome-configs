@@ -1,8 +1,11 @@
 # Personal ESPHome Device Configs
-These are just the configurations for the ESPHome devices I have. I've made them so they share a basic configuration to show similar data. I also added a fast_boot factory reset script for devices that are in a hard to reach place, or have a faulty button.
+These are just the configurations for the ESPHome devices I have. I've made them so they share a basic configuration to show similar data. I also added a fast boot factory reset script for devices that are in a hard to reach place, or have a faulty button.
+
+### Adopting
+When adopting into the dashboard, it will ask you for a name. In the next step, click skip then ok. Edit the device to change settings, add wifi and anything else you want.
 
 ### Substitutions
-I have included a few substitutions for grouped or most frequently changed settings. If you would like to add or change other settings, I'd suggest using `!extend` or `!remove` [explained below](https://github.com/dexn/esphome-configs#extend-and-remove).
+I have included a few substitutions for some of the most frequently changed settings. If you would like to add or change other settings, I'd suggest using `!extend` or `!remove` [explained below](https://github.com/dexn/esphome-configs#extend-and-remove).
 ```
 # Name used for mDNS and entities
 # Can only contain lowercase a-z, 0-9 and hyphens. Can be at most 24 characters long.
