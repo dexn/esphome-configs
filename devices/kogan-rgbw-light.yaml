@@ -39,6 +39,3 @@ output:
   - platform: esp8266_pwm
     id: output_white
     pin: GPIO5
-    min_power: 15%
-    max_power: 30%
-    zero_means_zero: true
