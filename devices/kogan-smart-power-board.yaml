@@ -64,6 +64,10 @@ binary_sensor:
         - OFF for at least 0.5s
       then:
         - switch.toggle: relayusb
+      - timing:
+          - ON for at least 4s
+        then:
+          - button.press: Reset
 
 light:
   - platform: status_led
