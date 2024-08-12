@@ -1,7 +1,10 @@
 substitutions:
   name: kogan-smart-power-board
   friendly_name: Kogan Smart Power Board
-  restore_mode: RESTORE_DEFAULT_OFF
+  switch_1_restore_mode: RESTORE_DEFAULT_OFF
+  switch_2_restore_mode: RESTORE_DEFAULT_OFF
+  switch_3_restore_mode: RESTORE_DEFAULT_OFF
+  switch_usb_restore_mode: RESTORE_DEFAULT_OFF
   update_interval: 10s
   current_limit : "10"
   # Calibration values - Learn more here https://esphome.io/components/sensor/hlw8012.html#calibration
