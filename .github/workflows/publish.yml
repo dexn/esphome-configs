@@ -1,7 +1,7 @@
-name: Build and Publish ESPHome firmware
+name: Publish
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       files:
         description: Comma-separated list of files to build.
