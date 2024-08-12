@@ -172,25 +172,25 @@ switch:
     pin: GPIO13
     id: relay1
     icon: mdi:power-socket-au
-    restore_mode: ${restore_mode}
+    restore_mode: ${switch_1_restore_mode}
 
   - platform: gpio
     name: Switch 2
     pin: GPIO14
     id: relay2
     icon: mdi:power-socket-au
-    restore_mode: ${restore_mode}
+    restore_mode: ${switch_2_restore_mode}
 
   - platform: gpio
     name: Switch 3
     pin: GPIO3
     id: relay3
     icon: mdi:power-socket-au
-    restore_mode: ${restore_mode}
+    restore_mode: ${switch_3_restore_mode}
 
   - platform: gpio
     name: Switch USB
     pin: GPIO15
     id: relayusb
     icon: mdi:usb-port
-    restore_mode: ${restore_mode}
+    restore_mode: ${switch_usb_restore_mode}
