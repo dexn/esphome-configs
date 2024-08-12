@@ -2,6 +2,7 @@ substitutions:
   name: arlec-rgbcct-light
   friendly_name: Arlec RGBCCT Light Bulb
   restore_mode: RESTORE_DEFAULT_OFF
+  color_interlock: 'true'
 
 esphome:
   name: "${name}"
