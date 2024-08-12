@@ -1,0 +1,35 @@
+substitutions:
+  name: kogan-smart-power-board
+  friendly_name: Kogan Smart Power Board
+  restore_mode: RESTORE_DEFAULT_OFF
+  update_interval: 10s
+  current_limit : "10"
+  # Calibration values - Learn more here https://esphome.io/components/sensor/hlw8012.html#calibration
+  voltage_divider: "799"
+  current_resistor: "0.00250"
+  current_multiply: "1.0"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+
+logger:
+  level: INFO
+
+api:
+
+ota:
+  platform: esphome
+
+wifi:
+  ap:
+
+dashboard_import:
+  package_import_url: github://dexn/esphome-configs/kogan-smart-plug.yaml@main
+  import_full_config: true
+
+packages:
+  base_package: github://dexn/esphome-configs/packages/base.yaml@main
+  fast_boot_package: github://dexn/esphome-configs/packages/fast_boot_status.yaml@main
+  device_package: github://dexn/esphome-configs/devices/kogan-smart-plug.yaml@main
