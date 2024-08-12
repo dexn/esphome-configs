@@ -139,7 +139,7 @@ sensor:
 switch:
   - platform: gpio
     name: Switch
-    pin: GPIO13
+    pin: GPIO14
     id: relay
     icon: mdi:power-socket-au
     restore_mode: ${restore_mode}
