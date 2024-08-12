@@ -1,0 +1,192 @@
+esphome:
+  min_version: 2024.6.0
+  comment: "Kogan SmarterHome Smart Power Board"
+  project:
+    name: "Kogan SmarterHome.Smart Power Board"
+    version: "1.0.0"
+
+esp8266:
+  board: esp8285
+  restore_from_flash: true
+
+logger:
+  baud_rate: 0
+
+external_components:
+  # Dentra Components - Adds 'Platform - Energy Statistics'
+  # https://github.com/dentra/esphome-components/tree/master/components/energy_statistics
+  - source: github://dentra/esphome-components
+
+globals:
+  - id: total_energy
+    type: float
+    restore_value: yes
+    initial_value: '0.0'
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: true
+    name: Power Button
+    disabled_by_default: true
+    on_multi_click:
+    - timing:
+        - ON for at most 1s
+        - OFF for at most 1s
+        - ON for at most 1s
+        - OFF for at most 1s
+        - ON for at most 1s
+        - OFF for at most 1s
+        - ON for at most 1s
+        - OFF for at least 0.5s
+      then:
+        - switch.toggle: relay3
+    - timing:
+        - ON for at most 1s
+        - OFF for at most 1s
+        - ON for at most 1s
+        - OFF for at most 1s
+        - ON for at most 1s
+        - OFF for at least 0.5s
+      then:
+        - switch.toggle: relay2
+    - timing:
+        - ON for at most 1s
+        - OFF for at most 1s
+        - ON for at most 1s
+        - OFF for at least 0.5s
+      then:
+        - switch.toggle: relay1
+    - timing:
+        - ON for at most 1s
+        - OFF for at least 0.5s
+      then:
+        - switch.toggle: relayusb
+
+light:
+  - platform: status_led
+    name: "Status LED"
+    id: Status_led
+    disabled_by_default: true
+    pin:
+      inverted: true
+      number: GPIO1
+
+sensor:
+  - platform: hlw8012
+    sel_pin:
+      number: GPIO12
+      inverted: true
+    cf_pin: GPIO04
+    cf1_pin: GPIO05
+    current_resistor: ${current_resistor}
+    voltage_divider: ${voltage_divider}
+    update_interval: ${update_interval}
+
+    current:
+      name: Current
+      filters:
+        - multiply: ${current_multiply}
+      on_value_range:
+        - above: ${current_limit}
+          then:
+            - switch.turn_off: relay1
+            - switch.turn_off: relay2
+            - switch.turn_off: relay3
+            - switch.turn_off: relayusb
+
+    voltage:
+      name: Voltage
+
+    power:
+      name: Power
+      id: power_sensor
+
+    energy:
+      name: Energy
+      id: energy
+      unit_of_measurement: kWh
+      filters:
+        # Multiplication factor from W to kW is 0.001
+        - multiply: 0.001
+      on_value:
+        then:
+          - lambda: |-
+              static float previous_energy_value = 0.0;
+              float current_energy_value = id(energy).state;
+              id(total_energy) += current_energy_value - previous_energy_value;
+              previous_energy_value = current_energy_value;
+              id(total_energy_sensor).update();
+      internal: true
+
+  - platform: template
+    name: "Total Energy"
+    id: total_energy_sensor
+    unit_of_measurement: kWh
+    device_class: "energy"
+    state_class: "total_increasing"
+    icon: "mdi:lightning-bolt"
+    accuracy_decimals: 3
+    lambda: |-
+      return id(total_energy);
+    update_interval: ${update_interval}
+
+  - platform: total_daily_energy
+    name: Total Daily Energy
+    power_id: power_sensor
+    filters:
+      - multiply: 0.001
+    unit_of_measurement: kWh
+
+  # Dentra Components - Define the id of the sensor providing 'Total Energy' used
+  - platform: "energy_statistics"
+    total: total_energy_sensor
+
+    # Dentra Components - Adds Energy Yesterday
+    energy_yesterday:
+      name: "Total Energy Yesterday"
+      id: total_energy_yesterday
+      accuracy_decimals: 3
+
+    # Dentra Components - Adds Energy Week
+    energy_week:
+      name: "Total Energy Week"
+      id: total_energy_week
+      accuracy_decimals: 3
+
+    # Dentra Components - Adds Energy Month
+    energy_month:
+      name: "Total Energy Month"
+      id: total_energy_month
+      accuracy_decimals: 3
+
+switch:
+  - platform: gpio
+    name: Switch 1
+    pin: GPIO13
+    id: relay1
+    icon: mdi:power-socket-au
+    restore_mode: ${restore_mode}
+
+  - platform: gpio
+    name: Switch 2
+    pin: GPIO14
+    id: relay2
+    icon: mdi:power-socket-au
+    restore_mode: ${restore_mode}
+
+  - platform: gpio
+    name: Switch 3
+    pin: GPIO3
+    id: relay3
+    icon: mdi:power-socket-au
+    restore_mode: ${restore_mode}
+
+  - platform: gpio
+    name: Switch USB
+    pin: GPIO15
+    id: relayusb
+    icon: mdi:usb-port
+    restore_mode: ${restore_mode}
