@@ -26,6 +26,7 @@ jobs:
         athom-smart-plug-v2.yaml
         kogan-bladeless-dc-fan.yaml
         kogan-rgbw-light.yaml
+        kogan-smart-plug.yaml
         kogan-smart-power-board.yaml
         mirabella-rgbw-light.yaml
         tuya-star-projector.yaml
