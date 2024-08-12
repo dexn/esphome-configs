@@ -1,0 +1,30 @@
+substitutions:
+  name: mirabella-rgbw-light
+  friendly_name: Mirabella RGBW Light
+  restore_mode: RESTORE_DEFAULT_OFF
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+
+logger:
+  level: INFO
+
+api:
+
+ota:
+  platform: esphome
+
+wifi:
+  ap:
+
+dashboard_import:
+  package_import_url: github://dexn/esphome-configs/mirabella-rgbw-light.yaml@main
+  import_full_config: true
+
+packages:
+  base_package: github://dexn/esphome-configs/packages/base.yaml@main
+  fast_boot_light_package: github://dexn/esphome-configs/packages/fast_boot_light.yaml@main
+  rgb_light_effects_package: github://dexn/esphome-configs/packages/rgb_light_effects.yaml@main
+  device_package: github://dexn/esphome-configs/devices/mirabella-rgbw-light.yaml@main
