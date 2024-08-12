@@ -69,10 +69,7 @@ sensor:
       on_value_range:
         - above: ${current_limit}
           then:
-            - switch.turn_off: relay1
-            - switch.turn_off: relay2
-            - switch.turn_off: relay3
-            - switch.turn_off: relayusb
+            - switch.turn_off: relay
 
     voltage:
       name: Voltage
