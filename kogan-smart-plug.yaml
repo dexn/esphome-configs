@@ -1,6 +1,6 @@
 substitutions:
-  name: kogan-smart-power-board
-  friendly_name: Kogan Smart Power Board
+  name: kogan-smart-plug
+  friendly_name: Kogan Smart Plug
   restore_mode: RESTORE_DEFAULT_OFF
   update_interval: 10s
   current_limit : "10"
