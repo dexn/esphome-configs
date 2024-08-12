@@ -14,7 +14,7 @@ logger:
 
 light:
   - platform: rgbww
-    id: rgbww_light
+    id: Light
     name: "RGBCW_Bulb"
     restore_mode: ${restore_mode}
     red: red_output
