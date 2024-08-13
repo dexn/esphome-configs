@@ -7,16 +7,5 @@ jobs:
   build:
     uses: esphome/workflows/.github/workflows/publish.yml@main
     with:
-      files: |
-        arlec-rgbcct-light.yaml
-        athom-presence-sensor.yaml
-        athom-rgbw-light.yaml
-        athom-rgbww-light.yaml
-        athom-smart-plug-v2.yaml
-        kogan-bladeless-dc-fan.yaml
-        kogan-rgbw-light.yaml
-        kogan-smart-plug.yaml
-        kogan-smart-power-board.yaml
-        mirabella-rgbw-light.yaml
-        tuya-star-projector.yaml
+      files: arlec-rgbcct-light.yaml,athom-presence-sensor.yaml,athom-rgbw-light.yaml,athom-rgbww-light.yaml,athom-smart-plug-v2.yaml,kogan-bladeless-dc-fan.yaml,kogan-rgbw-light.yaml,kogan-smart-plug.yaml,kogan-smart-power-board.yaml,mirabella-rgbw-light.yaml,tuya-star-projector.yaml
       name: Dexn's ESPHome Configs
