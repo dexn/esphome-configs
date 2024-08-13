@@ -5,13 +5,6 @@ Add some information about your project here.
 # Installation
 
 You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
-
-<ol style='text-align:left'>
-  <li>Connect the ESP device to your computer</br>using USB or serial-to-USB adapter</li></br>
-  <li>Select the firmware variant suitable for</br>your device</li></br>
-  <li>Hit "Install" and select the correct port</br>or find help if <a href="https://tasmota.github.io/docs/Getting-Started/" target='_blank' style='color:#aaa;'>no device found</a></li>
-</ol>
-</br>
 <select>
   <optgroup label="Release">
     <option value="manifest/release.tasmota.manifest.json">Tasmota</option>
@@ -93,15 +86,6 @@ You can use the button below to install the pre-built firmware directly to your 
     <option value="manifest/development.tasmota32-bluetooth.manifest.json">Tasmota32 Bluetooth</option>
   </optgroup>
 </select>
-</br></br>
-<p>
-  <esp-web-install-button id="inst">
-    <i slot="unsupported">
-      Your browser does not support Web Serial.</br>Open this page in Google Chrome or</br>Microsoft Edge instead
-      <span class="not-supported-i hidden">(but not on your mobile device)</span>.
-    </i>
-  </esp-web-install-button>
-</p>
 
 <esp-web-install-button manifest="./manifest.json"></esp-web-install-button>
 
