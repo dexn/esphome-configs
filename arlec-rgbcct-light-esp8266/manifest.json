@@ -1,0 +1,13 @@
+{
+  "chipFamily": "ESP8266",
+  "ota": {
+    "path": "arlec-rgbcct-light-esp8266/arlec-rgbcct-light-esp8266.ota.bin",
+    "md5": "aae3139d81a48d46de1c571787d5e740"
+  },
+  "parts": [
+    {
+      "path": "arlec-rgbcct-light-esp8266/arlec-rgbcct-light-esp8266.factory.bin",
+      "offset": 0
+    }
+  ]
+}

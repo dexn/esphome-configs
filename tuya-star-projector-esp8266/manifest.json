@@ -1,0 +1,13 @@
+{
+  "chipFamily": "ESP8266",
+  "ota": {
+    "path": "tuya-star-projector-esp8266/tuya-star-projector-esp8266.ota.bin",
+    "md5": "93f5d259b7ca5a3f2b6c19e4ebbbd59b"
+  },
+  "parts": [
+    {
+      "path": "tuya-star-projector-esp8266/tuya-star-projector-esp8266.factory.bin",
+      "offset": 0
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "chipFamily": "ESP8266",
+  "ota": {
+    "path": "mirabella-rgbw-light-esp8266/mirabella-rgbw-light-esp8266.ota.bin",
+    "md5": "6ff43b937622e7eb2a52468bc1bc82f0"
+  },
+  "parts": [
+    {
+      "path": "mirabella-rgbw-light-esp8266/mirabella-rgbw-light-esp8266.factory.bin",
+      "offset": 0
+    }
+  ]
+}

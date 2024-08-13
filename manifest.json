@@ -1,0 +1,151 @@
+{
+  "name": "Dexns ESPHome Configs",
+  "version": "",
+  "home_assistant_domain": "esphome",
+  "new_install_skip_erase": false,
+  "builds": [
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "arlec-rgbcct-light-esp8266/arlec-rgbcct-light-esp8266.ota.bin",
+        "md5": "aae3139d81a48d46de1c571787d5e740"
+      },
+      "parts": [
+        {
+          "path": "arlec-rgbcct-light-esp8266/arlec-rgbcct-light-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "athom-presence-sensor-esp8266/athom-presence-sensor-esp8266.ota.bin",
+        "md5": "a74fec48b0bb46fbdaf18a69abeb8de6"
+      },
+      "parts": [
+        {
+          "path": "athom-presence-sensor-esp8266/athom-presence-sensor-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "athom-rgbw-light-esp8266/athom-rgbw-light-esp8266.ota.bin",
+        "md5": "4cbd4c6ea1d7d43b875aa2dc40cc373c"
+      },
+      "parts": [
+        {
+          "path": "athom-rgbw-light-esp8266/athom-rgbw-light-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "athom-rgbww-light-esp8266/athom-rgbww-light-esp8266.ota.bin",
+        "md5": "2e33302e1c67bd1ba3de09a49c86e733"
+      },
+      "parts": [
+        {
+          "path": "athom-rgbww-light-esp8266/athom-rgbww-light-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "athom-smart-plug-v2-esp8266/athom-smart-plug-v2-esp8266.ota.bin",
+        "md5": "9f55a813613565275f306e182cd08bc7"
+      },
+      "parts": [
+        {
+          "path": "athom-smart-plug-v2-esp8266/athom-smart-plug-v2-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "kogan-bladeless-dc-fan-esp8266/kogan-bladeless-dc-fan-esp8266.ota.bin",
+        "md5": "64bb48d64eb8add1f445ebb855ac548a"
+      },
+      "parts": [
+        {
+          "path": "kogan-bladeless-dc-fan-esp8266/kogan-bladeless-dc-fan-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "kogan-rgbw-light-esp8266/kogan-rgbw-light-esp8266.ota.bin",
+        "md5": "31a123d2db6850b24d052b9de059c4b2"
+      },
+      "parts": [
+        {
+          "path": "kogan-rgbw-light-esp8266/kogan-rgbw-light-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "kogan-smart-plug-esp8266/kogan-smart-plug-esp8266.ota.bin",
+        "md5": "f7854efe60468e9cd388ad77efce069e"
+      },
+      "parts": [
+        {
+          "path": "kogan-smart-plug-esp8266/kogan-smart-plug-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "kogan-smart-power-board-esp8266/kogan-smart-power-board-esp8266.ota.bin",
+        "md5": "43f575d5130d5a6e4de2987ad1cefd15"
+      },
+      "parts": [
+        {
+          "path": "kogan-smart-power-board-esp8266/kogan-smart-power-board-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "mirabella-rgbw-light-esp8266/mirabella-rgbw-light-esp8266.ota.bin",
+        "md5": "6ff43b937622e7eb2a52468bc1bc82f0"
+      },
+      "parts": [
+        {
+          "path": "mirabella-rgbw-light-esp8266/mirabella-rgbw-light-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "ota": {
+        "path": "tuya-star-projector-esp8266/tuya-star-projector-esp8266.ota.bin",
+        "md5": "93f5d259b7ca5a3f2b6c19e4ebbbd59b"
+      },
+      "parts": [
+        {
+          "path": "tuya-star-projector-esp8266/tuya-star-projector-esp8266.factory.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}

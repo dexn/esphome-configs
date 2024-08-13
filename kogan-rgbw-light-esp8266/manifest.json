@@ -1,0 +1,13 @@
+{
+  "chipFamily": "ESP8266",
+  "ota": {
+    "path": "kogan-rgbw-light-esp8266/kogan-rgbw-light-esp8266.ota.bin",
+    "md5": "31a123d2db6850b24d052b9de059c4b2"
+  },
+  "parts": [
+    {
+      "path": "kogan-rgbw-light-esp8266/kogan-rgbw-light-esp8266.factory.bin",
+      "offset": 0
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "chipFamily": "ESP8266",
+  "ota": {
+    "path": "kogan-smart-plug-esp8266/kogan-smart-plug-esp8266.ota.bin",
+    "md5": "f7854efe60468e9cd388ad77efce069e"
+  },
+  "parts": [
+    {
+      "path": "kogan-smart-plug-esp8266/kogan-smart-plug-esp8266.factory.bin",
+      "offset": 0
+    }
+  ]
+}

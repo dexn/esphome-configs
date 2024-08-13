@@ -1,0 +1,13 @@
+{
+  "chipFamily": "ESP8266",
+  "ota": {
+    "path": "kogan-bladeless-dc-fan-esp8266/kogan-bladeless-dc-fan-esp8266.ota.bin",
+    "md5": "64bb48d64eb8add1f445ebb855ac548a"
+  },
+  "parts": [
+    {
+      "path": "kogan-bladeless-dc-fan-esp8266/kogan-bladeless-dc-fan-esp8266.factory.bin",
+      "offset": 0
+    }
+  ]
+}

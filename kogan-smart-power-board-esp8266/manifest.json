@@ -1,0 +1,13 @@
+{
+  "chipFamily": "ESP8266",
+  "ota": {
+    "path": "kogan-smart-power-board-esp8266/kogan-smart-power-board-esp8266.ota.bin",
+    "md5": "43f575d5130d5a6e4de2987ad1cefd15"
+  },
+  "parts": [
+    {
+      "path": "kogan-smart-power-board-esp8266/kogan-smart-power-board-esp8266.factory.bin",
+      "offset": 0
+    }
+  ]
+}
