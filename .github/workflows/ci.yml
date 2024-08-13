@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ci:
+    name: Building ${{ matrix.file }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        file:
+          - arlec-rgbcct-light.yaml
+          - athom-presence-sensor.yaml
+          - athom-rgbw-light.yaml
+          - athom-rgbww-light.yaml
+          - athom-smart-plug-v2.yaml
+          - kogan-bladeless-dc-fan.yaml
+          - kogan-rgbw-light.yaml
+          - kogan-smart-plug.yaml
+          - kogan-smart-power-board.yaml
+          - mirabella-rgbw-light.yaml
+          - tuya-star-projector.yaml
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4.1.7
+      - name: Build ESPHome firmware to verify configuration
+        uses: esphome/build-action@v3.2.0
+        with:
+          yaml_file: ${{ matrix.file }}
