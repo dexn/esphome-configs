@@ -6,7 +6,7 @@ substitutions:
   current_limit : "10"
   # Calibration values - Learn more here https://esphome.io/components/sensor/hlw8012.html#calibration
   voltage_divider: "1910"
-  current_resistor: "0.00087"
+  current_resistor: "0.00093"
   current_multiply: "1.0"
 
 esphome:
