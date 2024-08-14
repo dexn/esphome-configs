@@ -40,6 +40,7 @@ number:
   - platform: "tuya"
     name: "Timer"
     id: timer
+    icon: mdi:timer
     unit_of_measurement: min
     mode: box
     number_datapoint: 8
