@@ -17,6 +17,8 @@ uart:
   rx_pin: GPIO13
   baud_rate: 9600
 
+tuya:
+
 climate:
   - platform: tuya
     name: "Heater"
