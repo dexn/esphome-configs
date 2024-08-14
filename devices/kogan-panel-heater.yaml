@@ -44,3 +44,7 @@ number:
     min_value: 0
     max_value: 120
     step: 1
+switch:
+  - platform: "tuya"
+    name: "Child Lock"
+    switch_datapoint: 6
