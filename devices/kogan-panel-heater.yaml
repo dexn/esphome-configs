@@ -40,10 +40,12 @@ number:
   - platform: "tuya"
     name: "Timer"
     id: timer
+    unit_of_measurement: min
     number_datapoint: 8
     min_value: 0
     max_value: 120
     step: 1
+
 switch:
   - platform: "tuya"
     name: "Child Lock"
