@@ -1,0 +1,44 @@
+esphome:
+  min_version: 2024.6.0
+  comment: "Kogan SmarterHome 2000W Panel Heater"
+  project:
+    name: "Kogan SmarterHome.Panel Heater"
+    version: "1.0.0"
+
+esp8266:
+  board: esp01_1m
+  restore_from_flash: true
+
+logger:
+  baud_rate: 0
+
+uart:
+  tx_pin: GPIO15
+  rx_pin: GPIO13
+  baud_rate: 9600
+
+climate:
+  - platform: tuya
+    name: "Heater"
+    id: heater
+    switch_datapoint: 7
+    target_temperature_datapoint: 2
+    current_temperature_datapoint: 3
+    supports_heat: true
+    fan_mode:
+      datapoint: 4
+      high_value: 0
+      low_value: 1
+    visual:
+      min_temperature: 18
+      max_temperature: 26
+      temperature_step: 1
+
+number:
+  - platform: "tuya"
+    name: "Timer"
+    id: timer
+    number_datapoint: 4
+    min_value: 0
+    max_value: 120
+    step: 1
