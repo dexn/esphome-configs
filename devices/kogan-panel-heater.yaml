@@ -27,13 +27,14 @@ climate:
     target_temperature_datapoint: 2
     current_temperature_datapoint: 3
     supports_heat: true
+    # Using fan_mode for eco because eco_mode does not support enum
     fan_mode:
       datapoint: 4
       high_value: 0
       low_value: 1
     visual:
       min_temperature: 18
-      max_temperature: 26
+      max_temperature: 30
       temperature_step: 1
 
 number:
