@@ -21,7 +21,7 @@ tuya:
 
 climate:
   - platform: tuya
-    name: "Heater"
+    name: None
     id: heater
     switch_datapoint: 7
     target_temperature_datapoint: 2
