@@ -46,15 +46,19 @@ output:
   - platform: esp8266_pwm
     id: output_red
     pin: GPIO4
+    frequency: 880Hz
 
   - platform: esp8266_pwm
     id: output_green
     pin: GPIO12
+    frequency: 880Hz
 
   - platform: esp8266_pwm
     id: output_blue
     pin: GPIO14
+    frequency: 880Hz
 
   - platform: esp8266_pwm
     id: output_white
     pin: GPIO5
+    frequency: 880Hz
