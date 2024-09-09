@@ -29,3 +29,5 @@ packages:
   fast_boot_light_package: github://dexn/esphome-configs/packages/fast_boot_light.yaml@main
   rgb_light_effects_package: github://dexn/esphome-configs/packages/rgb_light_effects.yaml@main
   device_package: github://dexn/esphome-configs/devices/arlec-rgbcct-light.yaml@main
+
+web_server: !remove
