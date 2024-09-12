@@ -1,3 +1,8 @@
+external_components:
+  - source: github://KaufHA/common@main
+    components: [ ddp ]
+    refresh: always
+
 # RGB PWM light effects - needs cleaning up
 light:
   - id: !extend Light
