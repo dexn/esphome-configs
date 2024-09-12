@@ -3,6 +3,8 @@ external_components:
     components: [ ddp ]
     refresh: always
 
+ddp:
+
 # RGB PWM light effects - needs cleaning up
 light:
   - id: !extend Light
