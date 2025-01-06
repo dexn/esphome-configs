@@ -17,6 +17,9 @@ esp32:
     type: arduino
     version: recommended
 
+esp32_improv:
+  authorizer: none
+
 logger:
   baud_rate: 0
 
