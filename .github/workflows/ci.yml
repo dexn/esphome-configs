@@ -17,6 +17,7 @@ jobs:
           - athom-rgbw-light.yaml
           - athom-rgbww-light.yaml
           - athom-smart-plug-v2.yaml
+          - athom-smart-plug-v3.yaml
           - kogan-bladeless-dc-fan.yaml
           - kogan-panel-heater.yaml
           - kogan-rgbw-light.yaml
