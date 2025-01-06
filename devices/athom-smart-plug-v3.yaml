@@ -1,0 +1,160 @@
+esphome:
+  min_version: 2024.6.0
+  comment: "Athom Smart Plug V3"
+  project:
+    name: "Athom Technology.Smart Plug V3"
+    version: "1.0.7"
+  platformio_options:
+    board_build.mcu: esp32c3
+    board_build.variant: esp32c3
+    board_build.flash_mode: dio
+
+esp32:
+  board: esp32-c3-devkitm-1
+  flash_size: 4MB
+  variant: ESP32C3
+  framework:
+    type: arduino
+    version: recommended
+
+logger:
+  baud_rate: 0
+
+external_components:
+  # Dentra Components - Adds 'Platform - Energy Statistics'
+  # https://github.com/dentra/esphome-components/tree/master/components/energy_statistics
+  - source: github://dentra/esphome-components
+
+uart:
+  rx_pin: GPIO20
+  baud_rate: 4800
+  data_bits: 8
+  stop_bits: 1
+  parity: EVEN
+
+globals:
+  - id: total_energy
+    type: float
+    restore_value: yes
+    initial_value: '0.0'
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO3
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Power Button"
+    disabled_by_default: true
+    on_multi_click:
+      - timing:
+          - ON for at least 4s
+        then:
+          - button.press: Reset
+
+light:
+  - platform: status_led
+    name: "Status LED"
+    id: Status_led
+    disabled_by_default: true
+    pin:
+      inverted: true
+      number: GPIO6
+
+sensor:
+  - platform: cse7766
+    current:
+      name: "Current"
+      filters:
+        - throttle_average: ${update_interval}
+        #For the chip will report less than 3w power when no load is connected
+        - lambda: if (x < 0.060) return 0.0; else return x;
+      on_value_range:
+        - above: ${current_limit}
+          then:
+            - switch.turn_off: relay
+
+    voltage:
+      name: "Voltage"
+      filters:
+        - throttle_average: ${update_interval}
+
+    power:
+      name: "Power"
+      id: power_sensor
+      filters:
+        - throttle_average: ${update_interval}
+        #For the chip will report less than 3w power when no load is connected
+        - lambda: if (x < 3.0) return 0.0; else return x;
+
+    energy:
+      name: "Energy"
+      id: energy
+      unit_of_measurement: kWh
+      filters:
+        - throttle: ${update_interval}
+        # Multiplication factor from W to kW is 0.001
+        - multiply: 0.001
+      on_value:
+        then:
+          - lambda: |-
+              static float previous_energy_value = 0.0;
+              float current_energy_value = id(energy).state;
+              id(total_energy) += current_energy_value - previous_energy_value;
+              previous_energy_value = current_energy_value;
+              id(total_energy_sensor).update();
+      internal: true
+
+    apparent_power:
+      name: "Apparent Power"
+      filters:
+        - throttle_average: ${update_interval}
+
+    power_factor:
+      name: "Power Factor"
+      filters:
+        - throttle_average: ${update_interval}
+
+  - platform: template
+    name: "Total Energy"
+    id: total_energy_sensor
+    unit_of_measurement: kWh
+    device_class: "energy"
+    state_class: "total_increasing"
+    icon: "mdi:lightning-bolt"
+    accuracy_decimals: 3
+    lambda: |-
+      return id(total_energy);
+    update_interval: ${update_interval}
+
+  - platform: total_daily_energy
+    name: "Total Energy Today"
+    restore: true
+    power_id: power_sensor
+    unit_of_measurement: kWh
+    icon: mdi:hours-24
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.001
+
+  # Dentra Components - Define the id of the sensor providing 'Total Energy' used
+  - platform: "energy_statistics"
+    total: total_energy_sensor
+
+    # Dentra Components - Adds Energy Yesterday
+    energy_yesterday:
+      name: "Total Energy Yesterday"
+      id: total_energy_yesterday
+      accuracy_decimals: 3
+
+    # Dentra Components - Adds Energy Week
+    energy_week:
+      name: "Total Energy Week"
+      id: total_energy_week
+      accuracy_decimals: 3
+
+    # Dentra Components - Adds Energy Month
+    energy_month:
+      name: "Total Energy Month"
+      id: total_energy_month
+      accuracy_decimals: 3
