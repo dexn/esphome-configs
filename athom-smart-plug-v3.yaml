@@ -20,6 +20,15 @@ ota:
 wifi:
   ap:
 
+esp32_ble_tracker:
+  scan_parameters:
+    interval: 1100ms
+    window: 1100ms
+    active: true
+
+bluetooth_proxy:
+  active: true
+
 dashboard_import:
   package_import_url: github://dexn/esphome-configs/athom-smart-plug-v3.yaml@main
   import_full_config: true
