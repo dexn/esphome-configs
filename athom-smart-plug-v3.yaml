@@ -2,7 +2,6 @@ substitutions:
   name: athom-smart-plug-v3
   friendly_name: Athom Smart Plug V3
   update_interval: 10s
-  current_limit : "10"
 
 esphome:
   name: "${name}"
