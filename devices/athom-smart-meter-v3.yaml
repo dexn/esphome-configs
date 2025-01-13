@@ -1,8 +1,8 @@
 esphome:
   min_version: 2024.6.0
-  comment: "Athom Smart Plug V3"
+  comment: "Athom Smart Meter V3"
   project:
-    name: "Athom Technology.Smart Plug V3"
+    name: "Athom Technology.Smart Meter V3"
     version: "1.0.7"
   platformio_options:
     board_build.mcu: esp32c3
