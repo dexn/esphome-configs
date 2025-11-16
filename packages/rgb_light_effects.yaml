@@ -1,5 +1,5 @@
 external_components:
-  - source: github://KaufHA/common@main
+  - source: github://KaufHA/common@ddp-fix-2025-11
     components: [ ddp ]
     refresh: always
 
